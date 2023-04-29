@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" >
+    <title>Google Search Link Generator</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+      }
+      h1 {
+        margin-top: 50px;
+        margin-bottom: 30px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      input[type="text"] {
+        width: 300px;
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        box-shadow: 0 0 5px #ADD8E6;
+      }
+      input[type="text"]:focus {
+        outline: none;
+        box-shadow: 0 0 5px #87CEEB;
+      }
+      button[type="submit"],
+      button[type="button"] {
+        padding: 10px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+        outline:none;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      button[type="submit"]:hover,
+      button[type="button"]:hover {
+        background-color: #3E8E41;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Google Search Link Generator</h1>
+    <form>
+      <label for="input">Enter your search query:</label>
+      <input type="text" id="input" name="input" placeholder="e.g. how to learn javascript">
+      <br>
+      <label for="output">Your Google search link:</label>
+      <input type="text" id="output" name="output" readonly>
+      <br>
+      <button type="submit" id="generate">Generate</button>
+      <button type="button" id="copy">Copy</button>
+      <button type="button" id="reload">Reset</button>
+    </form>
+    <script>
+      const form = document.querySelector('form');
+      const input = document.querySelector('#input');
+      const output = document.querySelector('#output');
+      const generateBtn = document.querySelector('#generate');
+      const copyBtn = document.querySelector('#copy');
+      const reloadBtn = document.querySelector('#reload');
+
+      generateBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const query = input.value;
+        const encodedQuery = encodeURIComponent(query);
+        const googleSearchLink = `https://www.google.com/search?q=${encodedQuery}`;
+
+        output.value = googleSearchLink;
+        status.textContent = '';
+      });
+
+      copyBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        output.select();
+        document.execCommand('copy');
+        copyBtn.innerHTML = 'Copied!';
+      });
+
+      reloadBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        input.value = '';
+        output.value = '';
+        copcopy.innerHinn = 'Copy';
+      });
+    </script>
+  </body>
+</html>
